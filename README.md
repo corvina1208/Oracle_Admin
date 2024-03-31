@@ -10,7 +10,7 @@
 - 1-3. Shared Pool : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-3.%20Shared%20Pool.md)
 - 1-4. Database Buffer Cache : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-4.%20Database%20Buffer%20Cache.md)
 - 1-5. Redo Log Buffer : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-5.%20Redo%20Log%20Buffer.md)
-- 1-6. Large Pool : [[보기]]
+- 1-6. Large Pool : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-6.%20Large%20Pool.md)
 - 1-7. Java Pool / Stream Pool
 - 1-8. PGA
 - 1-9. DBWn
