@@ -21,3 +21,7 @@
 - 1-14. ARCn(Archive Process) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-14.%20ARCn(Archive%20Process).md)
 
 ### 2. 저장 영역 구조
+- 2-1. 데이터베이스 저장 영역 구조 : [[보기]]
+- 2-2. 논리적 / 물리적 데이터베이스 구조 : [[보기]]
+
+### 3. Startup & Shutdown
