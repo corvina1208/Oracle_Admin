@@ -1,3 +1,5 @@
+실습 환경 : Oracle 11g / 19c / 21c
+
 # Oracle Admin
 
 ### 1. 오라클 구조
@@ -12,6 +14,6 @@
 - 1-9. CKPT(Checkpoint Process)
 - 1-10. SMON(System Monitor Process)
 - 1-11. PMON(Process Monitor)
-- 1-12. ARCn(Archive process)
+- 1-12. ARCn(Archive Process)
 
 ### 2. 저장 영역 구조
