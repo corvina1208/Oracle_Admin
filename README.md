@@ -16,7 +16,7 @@
 - 1-9. DBWn(DB Writer) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-9.%20DBWn(DB%20Writer).md)
 - 1-10. LGWR(Log Writer) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-10.%20LGWR(Log%20Writer).md)
 - 1-11. CKPT(Checkpoint Process) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-11.%20CKPT(Checkpoint%20Process).md)
-- 1-12. SMON(System Monitor Process)
+- 1-12. SMON(System Monitor Process) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-12.%20SMON(System%20Monitor%20Process).md)
 - 1-13. PMON(Process Monitor)
 - 1-14. ARCn(Archive Process)
 
