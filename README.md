@@ -12,6 +12,6 @@
 - 1-9. CKPT(Checkpoint Process)
 - 1-10. SMON(System Monitor Process)
 - 1-11. PMON(Process Monitor)
-- 1-12. ARCn(Archive process)
+- 1-12. ARCn(Archive Process)
 
 ### 2. 저장 영역 구조
