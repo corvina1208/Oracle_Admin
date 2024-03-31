@@ -4,7 +4,7 @@
 
 ### 1. 오라클 구조
 - 1-1. 오라클 데이터베이스 서버 구조 : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-1.%20%EC%98%A4%EB%9D%BC%ED%81%B4%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EC%84%9C%EB%B2%84%20%EA%B5%AC%EC%A1%B0.md)
-- 1-2. 오라클 데이터베이스 메모리 구조 : [[보기]]
+- 1-2. 오라클 데이터베이스 메모리 구조 : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-2.%20%EC%98%A4%EB%9D%BC%ED%81%B4%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0.md)
 - 1-3. Shared Pool
 - 1-4. Database Buffer Cache
 - 1-5. Redo Log Buffer
