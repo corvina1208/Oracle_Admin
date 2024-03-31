@@ -1,4 +1,4 @@
-실습 환경 : Oracle 11g / 19c / 21c
+**실습 환경 : Oracle 11g / 19c / 21c**
 
 # Oracle Admin
 
