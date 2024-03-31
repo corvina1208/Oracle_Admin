@@ -13,7 +13,7 @@
 - 1-6. Large Pool : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-6.%20Large%20Pool.md)
 - 1-7. Java Pool / Stream Pool : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-7.%20Java%20Pool%2C%20Stream%20Pool.md)
 - 1-8. PGA(Program Global Area) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-8.%20PGA.md)
-- 1-9. DBWn(DB Writer) : [[보기]]
+- 1-9. DBWn(DB Writer) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-9.%20DBWn(DB%20Writer).md)
 - 1-10. LGWR(Log Writer)
 - 1-11. CKPT(Checkpoint Process)
 - 1-12. SMON(System Monitor Process)
