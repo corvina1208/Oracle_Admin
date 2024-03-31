@@ -1,0 +1,45 @@
+■ 오라클 데이터베이스 서버 구조
+
+![image](https://github.com/corvina1208/Images/assets/157337929/1b33bb99-8056-4116-b551-099e64c29aa9)
+
+※ 오라클 데이터베이스 서버 아키텍처에서 중요한 세가지 구조
+1. 메모리 구조
+2. 프로세스 구조
+3. 저장 영역 구조
+
+※ 데이터베이스의 구성
+- 물리적 구조
+- 논리적 구조
+
+
+![image](https://github.com/corvina1208/Images/assets/157337929/764890f5-380a-4d69-bffb-25a8653f3170)
+
+※ 오라클 메모리를 따로 두는 이유
+- 메모리에 데이터를 올려놓고 데이터 검색을 빠르게 하기 위해서
+
+예)     사전          →          단어장
+      (database)             (오라클 메모리)
+
+
+
+■ 실습
+
+#1. SYS 유저로 접속
+
+$ sqlplus / as sysdba
+
+#2. 오라클 DB 의 이름 확인
+
+SYS > select name from v$database;
+
+#3. 오라클 메모리(instance) 의 이름 확인
+
+SYS > select instance_name from v$instance; 
+
+
+
+문제1. 오라클 메모리가 잘 열려있는지 확인하기
+
+SYS > select instance_name, status
+         from v$instance; 
+
