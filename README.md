@@ -18,6 +18,6 @@
 - 1-11. CKPT(Checkpoint Process) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-11.%20CKPT(Checkpoint%20Process).md)
 - 1-12. SMON(System Monitor Process) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-12.%20SMON(System%20Monitor%20Process).md)
 - 1-13. PMON(Process Monitor) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-13.%20PMON(Process%20Monitor).md)
-- 1-14. ARCn(Archive Process)
+- 1-14. ARCn(Archive Process) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-14.%20ARCn(Archive%20Process).md)
 
 ### 2. 저장 영역 구조
