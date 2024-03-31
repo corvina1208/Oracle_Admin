@@ -1,6 +1,6 @@
 ■ 오라클 데이터베이스 서버 구조
 
-![image](https://github.com/corvina1208/Images/assets/157337929/1b33bb99-8056-4116-b551-099e64c29aa9.png)
+![1_서버구조](https://github.com/corvina1208/Images/assets/157337929/ed2964a7-ca40-460e-8ccb-6be12c30354b)
 
 ※ 오라클 데이터베이스 서버 아키텍처에서 중요한 세가지 구조
 1. 메모리 구조
