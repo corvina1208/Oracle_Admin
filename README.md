@@ -12,7 +12,7 @@
 - 1-5. Redo Log Buffer : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-5.%20Redo%20Log%20Buffer.md)
 - 1-6. Large Pool : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-6.%20Large%20Pool.md)
 - 1-7. Java Pool / Stream Pool : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-7.%20Java%20Pool%2C%20Stream%20Pool.md)
-- 1-8. PGA(Program Global Area) : [[보기]]
+- 1-8. PGA(Program Global Area) : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/1-8.%20PGA.md)
 - 1-9. DBWn
 - 1-10. LGWR(Log Writer)
 - 1-11. CKPT(Checkpoint Process)
