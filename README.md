@@ -1,3 +1,7 @@
+**실습 환경 : ORACLE 11g, 19c**
+
+<br/>
+
 # Oracle Admin
 
 ### 1. 오라클 구조
