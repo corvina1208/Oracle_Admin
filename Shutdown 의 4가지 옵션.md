@@ -1,0 +1,6 @@
+**▣ Shutdown 의 4가지 옵션**  
+
+<br/>
+<img src="https://github.com/corvina1208/Oracle_Admin/blob/main/shutdown.png" width="70%" height="70%">
+<br/>
+
