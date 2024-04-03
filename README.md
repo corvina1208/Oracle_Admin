@@ -30,5 +30,5 @@
 - 2-2. 논리적 / 물리적 데이터베이스 구조 : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/2-2.%20%EB%85%BC%EB%A6%AC%EC%A0%81%2C%20%EB%AC%BC%EB%A6%AC%EC%A0%81%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%20%EA%B5%AC%EC%A1%B0.md)
 
 ### 3. Startup & Shutdown
-- 3-1. Startup 의 4가지 단계 : [[보기]]
+- 3-1. Startup 의 4가지 단계 : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/3-1.%20Startup%20%EC%9D%98%204%EA%B0%80%EC%A7%80%20%EB%8B%A8%EA%B3%84.md)
 - 3-2. Shutdown 의 4가지 옵션 : [[보기]]
