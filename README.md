@@ -1,5 +1,7 @@
 **실습 환경 : ORACLE 11g, 19c**
 
+![image](https://github.com/corvina1208/Oracle_Admin/assets/157337929/715f35d6-0331-4da1-851a-b91bf6b0508d.png)
+
 <br/>
 
 # Oracle Admin
