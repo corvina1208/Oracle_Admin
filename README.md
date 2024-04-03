@@ -32,4 +32,4 @@
 ### 3. Startup & Shutdown
 - 3-1. Startup 의 4가지 단계 : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/3-1.%20Startup%20%EC%9D%98%204%EA%B0%80%EC%A7%80%20%EB%8B%A8%EA%B3%84.md)
 - 3-2. Shutdown 의 4가지 옵션 : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/3-2.%20Shutdown%20%EC%9D%98%204%EA%B0%80%EC%A7%80%20%EC%98%B5%EC%85%98.md)
-- 3-3. srvctl 명령어로 시작 / 종료 : [[보기]]
+- 3-3. 그 외의 방법들 : startup force / srvctl : [[보기]]
