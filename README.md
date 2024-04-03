@@ -1,12 +1,12 @@
 
-<img src="https://github.com/corvina1208/Oracle_Admin/assets/157337929/715f35d6-0331-4da1-851a-b91bf6b0508d.png" width="80%" height="80%">
-
+<img src="https://github.com/corvina1208/Oracle_Admin/assets/157337929/715f35d6-0331-4da1-851a-b91bf6b0508d.png" width="80%" height="80%">  
+<br/>
 <br/>
 
-**실습 환경 : ORACLE 11g, 19c**
+**실습 환경 : ORACLE 11g, 19c**  
 
 <br/>
-
+<br/>
 # Oracle Admin
 
 ### 1. 오라클 구조
