@@ -35,4 +35,3 @@
 - 3-3. 그 외의 방법들 : Startup Force / srvctl : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/3-3.%20%EA%B7%B8%20%EC%99%B8%EC%9D%98%20%EB%B0%A9%EB%B2%95%EB%93%A4%20%3A%20startup%20force%2C%20srvctl.md)
 
 
-[[test]]()
