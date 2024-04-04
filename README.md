@@ -53,8 +53,8 @@
 - 5-12. Bigfile Tablespace : [[보기]](https://www.notion.so/Bigfile-Tablespace-f168ae90b230477fb3dbbe448da8d2bd)
 
 ### 6. Undo Tablespace 관리
-- Undo Data 에 대한 이해
-- Undo Data / Redo Data
-- Undo Data 자동 관리
-- Undo Retention
-- ORA-01555 snap shot too old
+- Undo Data 에 대한 이해 : [[보기]](https://www.notion.so/Undo-Data-e70a2b1cf4ce4567b4088d6059b7c83c)
+- Undo Data / Redo Data : [[보기]](https://www.notion.so/Undo-Data-Redo-Data-6977877fac6c4c2c93877c58f1cae025)
+- Undo Data 자동 관리 : [[보기]](https://www.notion.so/Undo-Data-ecabe79c28504cecb570a94f6e0191c1)
+- Undo Retention : [[보기]](https://www.notion.so/Undo-Retention-90ade0953e154cbc9a7566fedb147c10)
+- ORA-01555 snap shot too old : [[보기]](https://www.notion.so/ORA-01555-snapshot-too-old-28f61ab2a8e64aee9572c177dbb0950a)
