@@ -43,7 +43,7 @@
 - 5-2. Tablespace 생성 : [[보기]](https://www.notion.so/Tablespace-e1d80a1cfbc94f138c6de064b7231dfa)
 - 5-3. Tablespace 삭제 : [[보기]](https://www.notion.so/Tablespace-d8780304356d41fa996aa2cab24c7342)
 - 5-4. Tablespace 공간 추가
-- 5-5. Default Tablespace
+- 5-5. Default Tablespace : [[보기]](https://www.notion.so/Default-Tablespace-525e6d24f2164cd391944c00c2f5e0bd)
 - 5-6. 과도한 정렬 작업을 위한 Temporary Tablespace
 - 5-7. 과도한 DML 작업을 위한 Undo Tablespace
 - 5-8. Data file 이름 변경 / 위치 이동
