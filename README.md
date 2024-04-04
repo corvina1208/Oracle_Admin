@@ -46,7 +46,7 @@
 - 5-5. Default Tablespace : [[보기]](https://www.notion.so/Default-Tablespace-525e6d24f2164cd391944c00c2f5e0bd)
 - 5-6. 과도한 정렬 작업을 위한 Temporary Tablespace : [[보기]](https://www.notion.so/Temporary-Tablespace-8a530a8ba549456090e9c4b44e979d86)
 - 5-7. 과도한 DML 작업을 위한 Undo Tablespace : [[보기]](https://www.notion.so/DML-Undo-Tablespace-58604cbf0665423fb485274a5fb0bdbd)
-- 5-8. Data file 이름 변경 / 위치 이동
+- 5-8. Data file 이름 변경 / 위치 이동 : [[보기]](https://www.notion.so/Data-file-b3e806ce88b84b21b8c88e769d54571a)
 - 5-9. Tablespace 의 Segment 관리 방법
 - 5-10. OMF(Oracle Managed File)
 - 5-11. Tablespace 생성 시 Extent 관리 방법
