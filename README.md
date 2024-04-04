@@ -34,4 +34,9 @@
 - 3-2. Shutdown 의 4가지 옵션 : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/3-2.%20Shutdown%20%EC%9D%98%204%EA%B0%80%EC%A7%80%20%EC%98%B5%EC%85%98.md)
 - 3-3. 그 외의 방법들 : Startup Force / srvctl : [[보기]](https://github.com/corvina1208/Oracle_Admin/blob/main/3-3.%20%EA%B7%B8%20%EC%99%B8%EC%9D%98%20%EB%B0%A9%EB%B2%95%EB%93%A4%20%3A%20Startup%20Force%2C%20srvctl.md)
 
+### 4. Parameter File 관리
+- 4-1. 초기화 파라미터 관리 : SPFILE & PFILE : [[보기]](https://www.notion.so/SPFILE-PFILE-09c6cc8a05b1424e9693540405cb42ed)
+- 4-2. 초기화 파라미터 관리 : System Level / Session Level : [[보기]](https://www.notion.so/System-Level-Session-Level-0f88b5311ab24b46ab616d52db83df56)
 
+### 5. Tablespace 관리
+- 5-1. Tablespace 에 대한 이해 : [[보기]]
