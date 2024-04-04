@@ -49,8 +49,8 @@
 - 5-8. Data file 이름 변경 / 위치 이동 : [[보기]](https://www.notion.so/Data-file-b3e806ce88b84b21b8c88e769d54571a)
 - 5-9. Tablespace 의 Segment 관리 방법 : [[보기]](https://www.notion.so/Tablespace-Segment-74a655c756b14e6bb30dc41144f1fe83)
 - 5-10. OMF(Oracle Managed Files) : [[보기]](https://www.notion.so/OMF-Oracle-Managed-File-171d1ebc049c438e9ab4d3ded87463ca)
-- 5-11. Tablespace 생성 시 Extent 관리 방법
-- 5-12. Bigfile Tablespace
+- 5-11. Tablespace 생성 시 Extent 관리 방법 : [[보기]](https://www.notion.so/Tablespace-Extent-406e2653e1294b20a98601136b95d280)
+- 5-12. Bigfile Tablespace : [[보기]](https://www.notion.so/Bigfile-Tablespace-f168ae90b230477fb3dbbe448da8d2bd)
 
 ### 6. Undo Tablespace 관리
 - Undo Data 에 대한 이해
