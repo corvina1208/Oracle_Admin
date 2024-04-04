@@ -41,7 +41,7 @@
 ### 5. Tablespace 관리
 - 5-1. Tablespace 에 대한 이해 : [[보기]](https://www.notion.so/Tablespace-5a6af05bebca42919d52b5abcfbb5a82)
 - 5-2. Tablespace 생성 : [[보기]](https://www.notion.so/Tablespace-e1d80a1cfbc94f138c6de064b7231dfa)
-- 5-3. Tablespace 삭제
+- 5-3. Tablespace 삭제 : [[보기]](https://www.notion.so/Tablespace-d8780304356d41fa996aa2cab24c7342)
 - 5-4. Tablespace 공간 추가
 - 5-5. Default Tablespace
 - 5-6. 과도한 정렬 작업을 위한 Temporary Tablespace
