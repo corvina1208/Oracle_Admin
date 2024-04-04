@@ -44,7 +44,7 @@
 - 5-3. Tablespace 삭제 : [[보기]](https://www.notion.so/Tablespace-d8780304356d41fa996aa2cab24c7342)
 - 5-4. Tablespace 공간 추가 : [[보기]](https://www.notion.so/Tablespace-ff72bee1ac5d43ae9967f76644cd4ead)
 - 5-5. Default Tablespace : [[보기]](https://www.notion.so/Default-Tablespace-525e6d24f2164cd391944c00c2f5e0bd)
-- 5-6. 과도한 정렬 작업을 위한 Temporary Tablespace
+- 5-6. 과도한 정렬 작업을 위한 Temporary Tablespace : [[보기]](https://www.notion.so/Temporary-Tablespace-8a530a8ba549456090e9c4b44e979d86)
 - 5-7. 과도한 DML 작업을 위한 Undo Tablespace
 - 5-8. Data file 이름 변경 / 위치 이동
 - 5-9. Tablespace 의 Segment 관리 방법
