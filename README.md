@@ -40,3 +40,21 @@
 
 ### 5. Tablespace 관리
 - 5-1. Tablespace 에 대한 이해 : [[보기]](https://www.notion.so/Tablespace-5a6af05bebca42919d52b5abcfbb5a82)
+- 5-2. Tablespace 생성
+- 5-3. Tablespace 삭제
+- 5-4. Tablespace 공간 추가
+- 5-5. Default Tablespace
+- 5-6. 과도한 정렬 작업을 위한 Temporary Tablespace
+- 5-7. 과도한 DML 작업을 위한 Undo Tablespace
+- 5-8. Data file 이름 변경 / 위치 이동
+- 5-9. Tablespace 의 Segment 관리 방법
+- 5-10. OMF(Oracle Managed File)
+- 5-11. Tablespace 생성 시 Extent 관리 방법
+- 5-12. Bigfile Tablespace
+
+### 6. Undo Tablespace 관리
+- Undo Data 에 대한 이해
+- Undo Data / Redo Data
+- Undo Data 자동 관리
+- Undo Retention
+- ORA-01555 snap shot too old
