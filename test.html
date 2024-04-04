@@ -1,0 +1,822 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>▣ 007. DBCA로 데이터베이스 생성하기 </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3b3aab7a-4e23-478f-8fa0-f71ff1b1a5bd" class="page sans"><header><h1 class="page-title">▣ 007. DBCA로 데이터베이스 생성하기 </h1><p class="page-description"></p></header><div class="page-body"><p id="03ea263f-d52e-44c4-b1e2-6bf46e28a629" class="">
+</p><nav id="afc6e5ad-d6bb-41e8-8020-9a8fcc869407" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bf184023-e4b8-4094-b482-ff718adb5015">■ DB 생성 실습</a></div></nav><p id="1c147d94-124a-4a84-9dd7-560fddb057e3" class="">
+</p><p id="62812d4a-051b-4530-8925-660d82b0921b" class="">
+</p><p id="e33b3171-eab1-4892-9f84-39343acf1645" class="">
+</p><hr id="5e7b136d-fe14-41c1-a874-d0ddd2d97c13"/><p id="dbb9dcf0-4db3-4d1a-8df6-197ab72aa046" class="">
+</p><p id="0a7208bd-86f4-4aca-a6d1-1811fb756cab" class="">
+</p><p id="ae9ed4df-273b-4441-9125-ec52afe39aea" class="">
+</p><p id="7fcb7a2a-8744-42ed-ae6a-51f4a66f259c" class="">어제 만들었던 리눅스 OS의 소프트웨어 설치 후 이미지를 올리기</p><p id="20f02fee-2b0f-41d3-ad1c-92a249c5a6c1" class="">
+</p><p id="e07bca2c-4f3b-4536-a9aa-1a1cc10b6965" class="">오라클 소프트웨어 설치 → DB생성<br/><br/></p><p id="3a40076b-52b0-49c3-a452-c2f81bd8846c" class=""><br/>1. 설치와 문제해결 팀<br/>2. 데이터 이행 팀<br/>3. 기존 DB 유지보수 팀<br/>4. si DBA 팀<br/></p><p id="99e7fe98-2b44-48ab-b854-7a3c7525af43" class="">
+</p><p id="529e38f2-74da-46c3-ac13-a52f2acfc818" class="">
+</p><p id="bc1514ee-402f-4485-83d1-f9edcf5be6b9" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9cee2a6f-777e-4f7e-b535-7de6014fd2fb"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">※ DB 생성하기 전에 미리 챙겨야 할 중요한 사항들<br/>1) 스토리지를 3가지 중에 어떤 것을 하는지?<br/>   ① Raw Device : create database 스크립트로 DB를 생성<br/>   ② File System : DBCA<br/>   ③ ASM : DBCA<br/>2) character set 은 기존에 설치된 database 와 동일하게 할 것인지?<br/>(데이터 이행 시 굉장히 중요한 사항)<br/></div></figure><p id="328020cb-6afd-43bb-8092-894b6dccf1e7" class="">
+</p><p id="d6e4cd68-fd13-4055-a043-0dd15981928a" class="">1) 만약, 스토리지가 raw device 면 다음과 같이 스크립트로 수행한다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f5e29541-42f0-4b77-ab37-5c9770f2ff08" class="code"><code class="language-SQL">create database PROD
+user sys identified by oracle
+user system identified by oracle
+datafile &#x27;/raw/raw1/raw11&#x27; 
+size 100M autoextend on maxsize unlimited extent management local
+sysaux 
+datafile &#x27;/raw/raw1/raw12&#x27; 
+size 50M autoextend on maxsize unlimited
+default temporary tablespace temp
+tempfile &#x27;/raw/raw1/raw13&#x27; 
+size 50M autoextend on maxsize unlimited
+undo tablespace undotbs
+datafile &#x27;/raw/raw1/raw14&#x27; 
+size 50M autoextend on maxsize unlimited
+logfile 
+group 1 (&#x27;/raw/raw1/raw15&#x27;,
+        &#x27;/raw/raw1/raw16&#x27;) size 100M,
+group 2 (&#x27;/raw/raw1/raw17&#x27;,
+        &#x27;/raw/raw1/raw18&#x27;) size 100M,
+group 3 (&#x27;/raw/raw1/raw19&#x27;,
+        &#x27;/raw/raw1/raw20&#x27;) size 100M,
+group 4 (&#x27;/raw/raw1/raw21&#x27;,
+        &#x27;/raw/raw1/raw22&#x27;) size 100M,
+group 5 (&#x27;/raw/raw1/raw23&#x27;,
+         &#x27;/raw/raw1/raw24&#x27;) size 100M;</code></pre><figure id="1c6f77ef-a1bb-457a-989f-6ca6cb1f2bb3" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/129dce91ecc4e74edab0459acc6b694efddf5984.png"><img style="width:1731px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/129dce91ecc4e74edab0459acc6b694efddf5984.png"/></a></figure><p id="cc40c9fc-fdd0-456e-8d07-bd345174ad23" class="">
+</p><p id="5fdcd802-29a1-41c1-aa30-5010c51395f2" class="">2) 기존 database 의 character set 을 확인해야 한다.</p><p id="d03762e4-1547-41bc-8393-caebb9254cdd" class=""><code>select * from database_properties;</code></p><p id="2f4217e2-181e-46da-87fd-0d1c28fab7c0" class="">KO16MSWIN949 ------------------&gt; KO16MSWIN949</p><p id="c86d92a6-7cff-442f-b1e8-36b573945c00" class="">AL32UTF8  ------------------------&gt; AL32UTF8</p><p id="3928538c-8cc3-42ff-98fc-47052d8f5aa1" class="">
+</p><p id="505571f6-3873-4d70-bd4c-7c509ff33181" class="">※ 데이터 이행 시 가장 쉽게 할 수 있는 데이터 이행 방법 :<br/>TTS (Transportable TableSpace) pump 사용해서 이행하는 방법<br/><br/></p><p id="1a6af2c4-e7de-41d9-a622-370c0de59bc8" class="">이 때 주의할 사항 : character set 이 서로 맞아야 한다.<br/>서로 character set 이 틀리면 OGG를 써서 데이터 이행을 한다.<br/></p><p id="27242117-1f58-4eed-835a-ba5517eb0cf9" class="">
+</p><figure id="3ee4727c-bd6d-4e05-80b1-d8a70b749923" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled.png"><img style="width:542px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled.png"/></a></figure><p id="4da7d84e-d7bb-4418-8695-9edcbf16ced8" class="">
+</p><figure id="21db0d93-c29e-4ce8-9808-520228007a5f" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%201.png"><img style="width:707.9861450195312px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%201.png"/></a></figure><p id="52a09e62-c544-4d5c-86df-b9f2987c2f16" class="">
+</p><p id="aac639c0-0029-4683-b3c2-6787d947dc2f" class="">
+</p><p id="2ddf4427-1ef2-4945-bdf5-09813460065e" class="">
+</p><hr id="d5512f77-f53c-44cc-97e0-e7877cdec554"/><p id="1f587de7-446b-4793-89a9-8e19ac264999" class="">
+</p><p id="3bd574e3-2399-4c61-9579-cc70a0826b5f" class="">
+</p><h1 id="bf184023-e4b8-4094-b482-ff718adb5015" class="">■ DB 생성 실습</h1><p id="91bf9b58-9bde-488b-bc17-87957f4b48f4" class="">
+</p><p id="ec10536a-580c-4878-a31d-844c30fccfab" class="">#1. 모바텀에 oracle 유저로 접속하기</p><p id="4d78a1d2-3fce-4e90-840c-96caaa6639f9" class="">#2. DISPLAY 환경을 export 한다. (내 윈도우의 ip 주소로 export 한다.)</p><figure id="3ff14e98-61a2-4b8a-ba7c-1ac7df510169" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%202.png"><img style="width:600px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%202.png"/></a></figure><p id="8af1fac3-66c7-4232-b570-ab9a8eb60b50" class=""><code>$ export DISPLAY=192.168.19.2:0.0</code></p><p id="26c3c5d3-b761-4a9f-8664-661c27fb8858" class=""><code>$ dbca</code></p><figure id="88714497-ecf7-41bc-aeda-229a3ac26804" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%203.png"><img style="width:779px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%203.png"/></a></figure><p id="9d0d3ff9-19b5-4cf8-8a63-211d076d6ebe" class="">
+</p><figure id="0b95ea0c-09f8-4f26-b2db-9ae667b120a4" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%204.png"><img style="width:707.9861450195312px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%204.png"/></a></figure><p id="3530d9fb-3031-463b-a432-97a84021790c" class="">
+</p><figure id="550ae322-7a9a-443d-9dbf-46c3f4c97a1a" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%205.png"><img style="width:799px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%205.png"/></a><figcaption>(pw : oracle_4U)</figcaption></figure><p id="2a3fc559-a9ee-4e0f-a33b-f5756bcdf2f2" class="">
+</p><figure id="f126aba8-fa02-4c91-9aa8-8ac9150c0434" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%206.png"><img style="width:707.9861450195312px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%206.png"/></a></figure><p id="6d2cd28a-a65b-4aa5-9e03-3fbf8b87b4b5" class="">
+</p><figure id="1ca8d2fb-1ea9-4dc0-bd79-9d6ddaa936e7" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%207.png"><img style="width:797px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%207.png"/></a></figure><p id="a763bc78-50d3-47bd-92a0-a73656eb017e" class="">
+</p><figure id="f9fe254f-947a-4477-a2f4-7ab84f788f46" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%208.png"><img style="width:800px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%208.png"/></a></figure><p id="ff9024f6-6055-4f16-b74b-0a729a5ea480" class="">
+</p><p id="656492a2-61b6-4c80-8974-369e7cf90361" class="">완료 후 모바텀으로</p><p id="54115cb9-5196-4279-8769-31201d915c4b" class=""><code>[orcl:~]$ sqlplus / as sysdba</code></p><p id="197f48a9-78c7-4aa9-98d0-1d0cea6e318f" class="">⇒ 접속됨</p><figure id="02707194-cfa3-431d-8423-1cab1a784153" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%209.png"><img style="width:608px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%209.png"/></a></figure><p id="61614edb-f38f-4749-b961-67642e308726" class=""><code>SQL&gt; select instance_name, status from v$instance;</code></p><figure id="caf1e8ed-42dc-4055-b1ba-3b11157f9b02" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2010.png"><img style="width:289px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2010.png"/></a></figure><p id="b6f8d1c1-b876-40b4-a37d-13f15fac5bb2" class="">
+</p><p id="0b0d7757-f33c-45e1-9b25-429ac9403641" class="">#3.유저 생성하기</p><p id="7d609d44-f5b3-480c-aece-10d622d3a559" class="">※ 12c 버전 이후부터 사용자 생성 작업을 할 때 아래의 명령어를 수행해야 한다.<br/>_oracle_script 로 하게 되면, 생성되는 사용자가 공통 사용자임을 가정하고<br/>여러 데이터 베이스 컨테이너에 걸쳐 존재할 수 있는 사용자로 설정하는 것이다.<br/></p><p id="a14fc41c-3190-40fd-9839-00b2e395a2fd" class=""><code>alter session set &quot;_oracle_script&quot;=true;</code><br/><br/><br/><code>create user scott identified by tiger;</code></p><p id="8725967a-f544-4819-b944-1679e2190f65" class=""><code>grant dba to scott;</code></p><p id="9370c5e8-7ff0-4acf-9089-264c04a7bdbb" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="dabb5447-2957-4a7a-9239-e4f0ecce4c62"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><code>alter session set &quot;_oracle_script&quot;=true;</code><br/>위 명령어 없이 create user 시 아래와 같이 오류 발생<br/><figure id="6b77e6d6-fdf8-4369-b10e-2cc15e181e73" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2011.png"><img style="width:373px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2011.png"/></a></figure></div></figure><p id="c5e00fda-ecef-4e21-bf27-2b195c0ddd4f" class="">
+</p><p id="89186448-a0d5-4b26-8b9b-0d0478deae84" class="">
+</p><p id="027aa714-f77e-463b-86bf-32d2c35fca8b" class="">문제1. 데이터 베이스 모드를 아카이브 모드로 변환하기</p><p id="a8c83c25-af7b-4d03-8245-9ab2bcee8f83" class=""><code>shutdown immediate</code></p><p id="1e3f6827-6c33-49f4-8745-f224ed1113a4" class=""><code>startup mount</code></p><p id="04a3856d-34e9-4087-bb80-e432ad855cb7" class=""><code>alter database archivelog;</code></p><p id="9336d51b-8108-4cd9-80e1-00233c8d29c5" class=""><code>alter database open;</code></p><p id="7c7ed3da-61ac-43e4-a57a-4a1a0f640d40" class=""><code>archive log list</code></p><figure id="78e19c7c-eb4d-49d7-b7f5-e93ac4326393" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2012.png"><img style="width:461px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2012.png"/></a></figure><p id="1b786990-a79f-4dd3-9bd9-69503d82e4ae" class="">
+</p><p id="86c402c3-1ae2-41cb-978a-63bf8a4f40eb" class="">문제2. RMAN 으로 접속해서 full backup 수행하기</p><p id="ecf1f697-cf80-4d70-a6b9-1c1d2be0d180" class=""><code>RMAN&gt; show all;</code></p><figure id="ad719270-5748-4e66-a7c7-0629cf26e6b8" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2013.png"><img style="width:757px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2013.png"/></a></figure><p id="ac628558-ecb1-4bd6-8044-1cd1eea8c014" class=""><code>RMAN&gt; backup database include current controlfile;</code></p><p id="df34f32c-5d22-44b0-8e58-82fd58e60fdd" class="">
+</p><p id="8b8da326-2cc3-43b8-bf19-7fc504c68f73" class="">문제3. scott 으로 접속해 demo.sql 스크립트를 수행하기</p><p id="0cda5f57-ace9-47f0-8fd7-945601da39fe" class=""><code>$ sqlplus scott/tiger</code></p><p id="0fbc71c9-ab96-4091-94a4-2a6ae409f2ec" class=""><code>scott&gt; ed demo.sql</code></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="419018d9-9187-4dd0-909c-d5babe34647a" class="code"><code class="language-SQL">alter session set nls_Date_format=&#x27;RR/MM/DD&#x27;;
+drop table emp;
+drop table dept;
+
+
+CREATE TABLE DEPT
+       (DEPTNO number(10),
+        DNAME VARCHAR2(14),
+        LOC VARCHAR2(13) );
+
+
+INSERT INTO DEPT VALUES (10, &#x27;ACCOUNTING&#x27;, &#x27;NEW YORK&#x27;);
+INSERT INTO DEPT VALUES (20, &#x27;RESEARCH&#x27;,   &#x27;DALLAS&#x27;);
+INSERT INTO DEPT VALUES (30, &#x27;SALES&#x27;,      &#x27;CHICAGO&#x27;);
+INSERT INTO DEPT VALUES (40, &#x27;OPERATIONS&#x27;, &#x27;BOSTON&#x27;);
+
+CREATE TABLE EMP (
+ EMPNO               NUMBER(4) NOT NULL,
+ ENAME               VARCHAR2(10),
+ JOB                 VARCHAR2(9),
+ MGR                 NUMBER(4) ,
+ HIREDATE            DATE,
+ SAL                 NUMBER(7,2),
+ COMM                NUMBER(7,2),
+ DEPTNO              NUMBER(2) );
+
+
+INSERT INTO EMP VALUES (7839,&#x27;KING&#x27;,&#x27;PRESIDENT&#x27;,NULL,&#x27;81-11-17&#x27;,5000,NULL,10);
+INSERT INTO EMP VALUES (7698,&#x27;BLAKE&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;81-05-01&#x27;,2850,NULL,30);
+INSERT INTO EMP VALUES (7782,&#x27;CLARK&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;81-05-09&#x27;,2450,NULL,10);
+INSERT INTO EMP VALUES (7566,&#x27;JONES&#x27;,&#x27;MANAGER&#x27;,7839,&#x27;81-04-01&#x27;,2975,NULL,20);
+INSERT INTO EMP VALUES (7654,&#x27;MARTIN&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;81-09-10&#x27;,1250,1400,30);
+INSERT INTO EMP VALUES (7499,&#x27;ALLEN&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;81-02-11&#x27;,1600,300,30);
+INSERT INTO EMP VALUES (7844,&#x27;TURNER&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;81-08-21&#x27;,1500,0,30);
+INSERT INTO EMP VALUES (7900,&#x27;JAMES&#x27;,&#x27;CLERK&#x27;,7698,&#x27;81-12-11&#x27;,950,NULL,30);
+INSERT INTO EMP VALUES (7521,&#x27;WARD&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;81-02-23&#x27;,1250,500,30);
+INSERT INTO EMP VALUES (7902,&#x27;FORD&#x27;,&#x27;ANALYST&#x27;,7566,&#x27;81-12-11&#x27;,3000,NULL,20);
+INSERT INTO EMP VALUES (7369,&#x27;SMITH&#x27;,&#x27;CLERK&#x27;,7902,&#x27;80-12-09&#x27;,800,NULL,20);
+INSERT INTO EMP VALUES (7788,&#x27;SCOTT&#x27;,&#x27;ANALYST&#x27;,7566,&#x27;82-12-22&#x27;,3000,NULL,20);
+INSERT INTO EMP VALUES (7876,&#x27;ADAMS&#x27;,&#x27;CLERK&#x27;,7788,&#x27;83-01-15&#x27;,1100,NULL,20);
+INSERT INTO EMP VALUES (7934,&#x27;MILLER&#x27;,&#x27;CLERK&#x27;,7782,&#x27;82-01-11&#x27;,1300,NULL,10);
+
+
+commit;</code></pre><p id="31cf24f5-a249-4ca9-9bd2-5bce4927b217" class=""><code>scott&gt; @demo</code></p><p id="754dc9b2-8bf7-42b2-9f3e-8de9e6b0fd56" class="">
+</p><p id="89dcc764-e6d4-4787-b3c1-c10d3402b1c8" class="">
+</p><p id="e290dcf3-33d4-40e4-9cf4-be17bee986b7" class="">문제4. scott 이 소유한 emp 테이블이 어느 테이블 스페이스에 속해 있는지 확인하기</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6a6857e9-6250-4cf4-a764-1d857bd8e301" class="code"><code class="language-SQL">scott&gt;
+select table_name, tablespace_name
+  from user_tables;</code></pre><figure id="1b81dfbe-f8b1-4ff1-9a5b-58240776e064" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2014.png"><img style="width:351.9965515136719px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2014.png"/></a></figure><p id="819fe52a-d18c-41be-a726-c9481073b8af" class="">⇒ users 테이블 스페이스에 속해 있다.</p><p id="20e2bace-bfc7-4ff2-a138-1529e0466e13" class="">
+</p><p id="7f4f030b-1c7e-4f27-94d0-9b529f62602d" class="">
+</p><p id="3533976a-00d9-49ba-9fb1-3a448676f62b" class="">문제5. (데이터 이행) pump 디렉토리가 어디로 되어있는지 확인한다.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="43a03d0c-1343-44a9-bbff-182c52024190" class="code"><code class="language-SQL">select directory_name, directory_path
+  from dba_directories
+  where directory_name=&#x27;DATA_PUMP_DIR&#x27;;</code></pre><figure id="03b3b599-e540-48e1-91a9-d0074ae146e9" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2015.png"><img style="width:463.9930725097656px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2015.png"/></a></figure><p id="4d691aab-64f5-41fe-96be-8c1cb56e9b8b" class="">⇒ DATA_PUMP_DIR        /u01/app/oracle/admin/orcl/dpdump/</p><p id="137c008a-a57b-467f-8cc7-bcfb268d0a02" class="">
+</p><p id="26eac90b-bd06-4345-9001-5fedfc5bd585" class="">
+</p><p id="16ab6ac8-e695-4d52-ab03-2f00350acf70" class="">문제6. scott 의 emp 테이블을 export pump 받기</p><p id="e4d74ae7-6471-4e32-b19f-af6652c2b36c" class=""><code>$ expdp scott/tiger directory=DATA_PUMP_DIR dumpfile=emp.dmp tables=emp</code></p><figure id="e401c652-46ea-46ed-b377-4160c52a04c1" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2016.png"><img style="width:749px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2016.png"/></a></figure><p id="f1ce0966-9a6a-4907-ac43-49e9dde6ff13" class="">
+</p><p id="c0cc67ce-6460-4c0e-a564-0fe3987923b9" class="">문제7. scott 유저로 접속해서 emp 테이블을 휴지통에 넣지 말고 drop하기</p><p id="8112c5f9-da8e-4420-807d-5580bfe16d6d" class=""><code>scott&gt; drop table emp purge;</code></p><p id="4aaf9cc8-b0de-4b81-bf9e-f5e0c46a9e5b" class="">
+</p><p id="62329d1e-fb38-49f2-ac0a-cc5e07202bda" class="">문제8. export 받은 pump 파일로 복구하기</p><p id="6ebd9577-8195-4d01-9254-31cd83416cb2" class=""><code>$ impdp scott/tiger directory=DATA_PUMP_DIR dumpfile=emp.dmp tables=emp</code></p><figure id="e784d58f-c55a-4265-9e8f-fd03652508e0" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2017.png"><img style="width:756px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2017.png"/></a></figure><p id="e8604ac5-2812-4938-a00b-1511950c688a" class=""><code>scott&gt; select count(*) from tiger;</code></p><p id="f8037ae6-2c81-4b9e-bd82-a09246696608" class="">
+</p><p id="9bf604ae-7f4e-4c40-80f4-4b3074d41770" class="">
+</p><hr id="d8d34ffd-2c84-4f4c-a69b-16d910d2da80"/><p id="919d9f75-3a5c-4730-b038-aec042b04e73" class="">
+</p><p id="874f1bb6-ab46-4fc1-b5b5-6cf9e81ab9d5" class="">
+</p><p id="6a13051a-2f19-4b3b-93dd-639e2c9b86d1" class="">
+</p><p id="78055c85-1071-444b-8d1c-032ece58a4e1" class="">■ 12c 이후부터 변경된 혁신적인 oracle database 기능</p><p id="a518900e-3aa8-41ba-834e-0fba48f6e7f9" class="">컨테이너 DB 라는 개념이 생겼다.</p><p id="94b9af86-c015-479b-a1d0-a5411403c214" class="">ORACLE multitenant 아키텍쳐에서 Pluggable database (PDB) 를 생성해서 DB 생성을 손쉽게 하고 PDB 간의 데이터 이행을 굉장히 손쉽게 하는 기능이 생겼다.</p><p id="08d58e39-08a7-412a-ab3c-5ca505f05b31" class="">
+</p><p id="4782f864-040d-4d0a-a7ef-37366daac228" class="">※ ORACLE multitenant 아키텍쳐 장점 ?</p><p id="7c47df78-1c0b-4252-88e6-6c1d193a98e6" class="">1) 비용 절감 : 라이선스 비용, 저장공간, 메모리 사용량 절감 효과<br/>2) 빠른 프로비져닝 복제가 가능 : PDB 를 생성하고 복제하는 작업이 매우 빠르고 간단<br/>3) 향상된 성능 모니터링 : CDB 내의 모든 PDB 에 대한 성능 모니터링 및 분석을 하나의 인터페이스에서 수행할 수 있다 (EM 사용)<br/></p><p id="9870d725-10db-4045-ab73-5dda09424fc5" class="">
+</p><p id="6b5d8920-01e6-457d-af90-1f5c4f83a26c" class="">
+</p><p id="d602d7f8-d591-4229-b2b9-17f48aa20aeb" class="">■ 실습</p><p id="637574ef-62f5-4afd-8439-165ece65e641" class=""><strong>#1. PDB 가 뭐가 있는지 확인한다.</strong></p><p id="4037ba9c-427c-4088-b7e9-dbbc77bb74e7" class=""><code>sys&gt; select name from v$pdbs;</code></p><figure id="1da40bca-6094-4b01-868f-68d27160aadb" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2018.png"><img style="width:264px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2018.png"/></a></figure><p id="81586cdf-961c-4b8a-8d45-515594c32caf" class=""><strong>#2. file_name_convert 파라미터를 조회한다.</strong></p><p id="b8ee9baf-e704-4c8e-b1a7-b5939c24ff76" class="">pdb_file_name_convert ← pdb 생성 시 데이터 파일 경로 변환 규칙을 설정한다.</p><p id="41624a94-c791-4e3b-aa04-b296a596b782" class=""><strong>#3. pluggable database 생성하기</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e4870d63-7d5e-401d-ac60-bf32c135bce7" class="code"><code class="language-SQL">sys&gt;
+create pluggable database jsjdb
+admin user sys identified by oracle_4U;
+
+--&gt; 에러</code></pre><p id="5ece082a-075b-424a-8369-046801eaba4c" class="">ERROR at line 2:<br/>ORA-65001: missing or invalid administrative user name<br/></p><p id="79778993-2830-48da-b166-8b2ca58fd958" class="">( pdb 관리자를 만들어야 한다고 에러가 난다. 때문에 아래와 같이 수행한다. )</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fb006282-eb04-41c3-b70c-3021e2470580" class="code"><code class="language-SQL">sys&gt;
+create pluggable database jsjdb
+admin user hradmin identified by tiger roles=(dba);
+
+--&gt; Pluggable database created.</code></pre><p id="79418a60-46f9-44e0-990f-e109cb612bb2" class=""><code>sys&gt; select name, open_mode, open_time from v$pdbs;</code></p><figure id="3821a93c-19c2-48c0-9d6e-b2be2d214aba" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2019.png"><img style="width:463.9930725097656px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2019.png"/></a></figure><p id="9e69e980-bdeb-4c06-bd9e-744c728bd68c" class=""><strong>#4. pdb jsjdb 를 open 시키기</strong></p><p id="9e4fc58a-9f21-4639-af81-2797f7194103" class=""><code>sys&gt; alter pluggable database jsjdb open read write;</code></p><p id="0f7957cd-7925-43f1-8528-d902c2d1de89" class=""><code>sys&gt; select name, open_mode, open_time from v$pdbs;</code></p><figure id="7cde8e08-24d3-4284-a543-9afbb720a9d5" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2020.png"><img style="width:460px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2020.png"/></a></figure><p id="dc86cce6-63e7-46b3-95b0-ad7c0e6f74e8" class=""><strong>#5. 이제부터 jsjdb를 사용하겠다 라고 지정하고 사용한다.</strong></p><p id="646eb532-368e-4f79-b07a-b7f572a818a7" class=""><code>sys&gt; show con_name</code></p><figure id="db02dee7-8d09-4d13-b9ea-d51ad20ad800" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2021.png"><img style="width:192px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2021.png"/></a></figure><p id="440777a0-81b6-475a-8988-d50f6334115f" class=""><code>sys&gt; alter session set container=jsjdb;</code></p><p id="bfe2ef60-eae3-44ac-882b-bb121657e751" class=""><code>sys&gt; show con_name</code></p><figure id="b250ab37-ff22-4c13-9af0-9cf54d75f953" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2022.png"><img style="width:207px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2022.png"/></a></figure><p id="163aeecf-8b18-47ec-bbb4-9df096dd6e65" class="">
+</p><p id="3ed0a802-045e-4a55-ab92-34fb6924d4f2" class=""><strong>#6. 현재 가지고 있는 data file들을 확인하기</strong></p><p id="1c7fe354-afb9-4f9f-a2cc-4150a5c8d04b" class=""><code>sys&gt; select tablespace_name, file_name from dba_data_files;</code></p><figure id="4bf618da-35df-4564-be2a-f3a9f8e706fe" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2023.png"><img style="width:509px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2023.png"/></a></figure><p id="1b6f36d5-8994-4c9c-ab86-9422b9a99ca4" class="">
+</p><p id="d5654e57-9652-4ba3-a32f-05999f1b5bc1" class=""><strong>#7. 리스너를 올리고 리스너의 상태 확인하기</strong></p><p id="1f2c9123-c338-4edb-94d3-df3e06f2b2ef" class=""><code>[orcl:~]$ lsnrctl start</code></p><p id="1a820256-c9d7-4021-8484-4815691c4ba1" class=""><code>[orcl:~]$ lsnrctl status</code></p><figure id="9b5fe7db-7d1a-4837-a949-c696e9a1b14e" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2024.png"><img style="width:696.99658203125px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2024.png"/></a></figure><p id="d38e7e0a-d8e1-431f-b10e-bab78b635aab" class="">
+</p><p id="337c2e61-12b5-4c3b-80a9-4b4745df05b5" class=""><strong>#8. jsj2 라는 이름으로 pluggable db를 생성하기</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6588d95c-917e-4f6e-9e30-88382980f670" class="code"><code class="language-SQL">sys&gt;
+create pluggable database jsjdb2
+admin user hradmin2 identified by tiger roles=(dba);</code></pre><p id="7afed61c-2087-4ab2-bb3b-b2f501064ee6" class="">
+</p><p id="9d9f2dac-0087-4198-b278-f8df61ca0c73" class="">
+</p><p id="93d4b8a6-4419-4f60-92ed-3602e6e7710b" class="">21c database 생성한 이미지를 ova 파일로 내보내기<br/>ova 내보내기 하고 나서 21c vm 삭제하기<br/></p><p id="9a978c26-c599-4e8e-b713-daa3a272cb52" class="">
+</p><figure id="1ae64908-e3d6-4231-b7e2-3653af00998b" class="image"><a href="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2025.png"><img style="width:683.9583740234375px" src="%E2%96%A3%20007%20DBCA%E1%84%85%E1%85%A9%20%E1%84%83%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5%E1%84%87%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%89%E1%85%A2%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5%203b3aab7a4e23478f8fa0f71ff1b1a5bd/Untitled%2025.png"/></a></figure><p id="a0c02037-42df-4ef7-a647-da66d949fcb9" class="">
+</p><p id="245b667c-7cd7-4814-bd2d-78d15b252a6e" class="">
+</p><p id="e63e4560-1623-45ad-8c26-2a92639089ff" class="">
+</p><p id="36b4ab5a-5ef6-41c1-99dc-9b4f19f681f0" class="">
+</p><p id="da58bc24-849e-4751-ae52-83c85804e4a8" class="">
+</p><p id="c72c8840-e5f0-4a72-86c8-859257ff8aa1" class="">
+</p><p id="085cf8e3-69a9-4299-8016-212d036aceef" class="">
+</p><p id="cd732ebd-4182-4dac-b504-946614a69880" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
