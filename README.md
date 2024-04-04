@@ -39,4 +39,4 @@
 - 4-2. 초기화 파라미터 관리 : System Level / Session Level : [[보기]](https://www.notion.so/System-Level-Session-Level-0f88b5311ab24b46ab616d52db83df56)
 
 ### 5. Tablespace 관리
-- 5-1. Tablespace 에 대한 이해 : [[보기]]
+- 5-1. Tablespace 에 대한 이해 : [[보기]](https://www.notion.so/Tablespace-5a6af05bebca42919d52b5abcfbb5a82)
