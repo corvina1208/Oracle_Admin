@@ -57,4 +57,4 @@
 - Undo Data / Redo Data : [[보기]](https://rebel-lord-f41.notion.site/Undo-Data-Redo-Data-6977877fac6c4c2c93877c58f1cae025?pvs=4)
 - Undo Data 자동 관리 : [[보기]](https://rebel-lord-f41.notion.site/Undo-Data-ecabe79c28504cecb570a94f6e0191c1?pvs=4)
 - Undo Retention : [[보기]](https://rebel-lord-f41.notion.site/Undo-Retention-90ade0953e154cbc9a7566fedb147c10?pvs=4)
-- ORA-01555 snap shot too old : [[보기]](https://rebel-lord-f41.notion.site/ORA-01555-snapshot-too-old-28f61ab2a8e64aee9572c177dbb0950a?pvs=4)
+- ORA-01555 snapshot too old : [[보기]](https://rebel-lord-f41.notion.site/ORA-01555-snapshot-too-old-28f61ab2a8e64aee9572c177dbb0950a?pvs=4)
