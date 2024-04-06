@@ -58,3 +58,10 @@
 - Undo Data 자동 관리 : [[보기]](https://rebel-lord-f41.notion.site/Undo-Data-ecabe79c28504cecb570a94f6e0191c1?pvs=4)
 - Undo Retention : [[보기]](https://rebel-lord-f41.notion.site/Undo-Retention-90ade0953e154cbc9a7566fedb147c10?pvs=4)
 - ORA-01555 snapshot too old : [[보기]](https://rebel-lord-f41.notion.site/ORA-01555-snapshot-too-old-28f61ab2a8e64aee9572c177dbb0950a?pvs=4)
+
+### 7. Network 관리
+- Oracle Net Service : [[보기]](https://rebel-lord-f41.notion.site/Oracle-Net-Service-2df246477cdd4ddf91c8c4ce2f93b5c3?pvs=4)
+- SQL developer & DBeaver 접속 방법 : [[보기]](https://rebel-lord-f41.notion.site/SQL-developer-DBeaver-165eafd646ad454b9e694b4385688623?pvs=4)
+- Oracle Network 관리 도구 : [[보기]](https://rebel-lord-f41.notion.site/4c103d89a28b483d8b8445b3639671e1?pvs=4)
+- Oracle Server 접속 방식 : [[보기]](https://rebel-lord-f41.notion.site/9a4ba922748649dca609f5c302647b0b?pvs=4)
+- Oracle 접속 불가 시 확인해야할 사항 : [[보기]](https://rebel-lord-f41.notion.site/5ef42b115ad944ed880a1cfa30202b82?pvs=4)
