@@ -65,3 +65,13 @@
 - Oracle Network 관리 도구 : [[보기]](https://rebel-lord-f41.notion.site/4c103d89a28b483d8b8445b3639671e1?pvs=4)
 - Oracle Server 접속 방식 : [[보기]](https://rebel-lord-f41.notion.site/9a4ba922748649dca609f5c302647b0b?pvs=4)
 - Oracle 접속 불가 시 확인해야할 사항 : [[보기]](https://rebel-lord-f41.notion.site/5ef42b115ad944ed880a1cfa30202b82?pvs=4)
+
+### 8. User 관리
+- User 생성 방법 : [[보기]](https://rebel-lord-f41.notion.site/User-ce44917d16ea44598c2c01b7db956caa?pvs=4)
+- User 인증 방법 3가지 : [[보기]](https://rebel-lord-f41.notion.site/User-3-fc1d50dc057045d69b1428ae69ebcb4d?pvs=4)
+- User 보안 : [[보기]](https://rebel-lord-f41.notion.site/User-fa4e63bb52124503be2aa3e043d7ab49?pvs=4)
+- 오라클 DB 관리자 인증 방법 2가지 : [[보기]](https://rebel-lord-f41.notion.site/DB-2-397a7f7f974541edbfeaa5d003974e3f?pvs=4)
+- 오라클 DB 권한 종류 2가지 : [[보기]](https://rebel-lord-f41.notion.site/DB-2-7e4a2b76185746d29d0ee7624ee8ac63?pvs=4)
+- with admin option 개념과 사용 : [[보기]](https://rebel-lord-f41.notion.site/with-admin-option-24f11ac908754523af08df48ade03c45?pvs=4)
+- with grant option 개념과 사용 : [[보기]](https://rebel-lord-f41.notion.site/with-grant-option-fa4ebf903ecf426a8c43af7c9194c737?pvs=4)
+- Role 개념과 사용 : [[보기]](https://rebel-lord-f41.notion.site/Role-20b7322280be4a32885d64610872dbdf?pvs=4)
