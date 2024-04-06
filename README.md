@@ -52,7 +52,7 @@
 - 5-11. Tablespace 생성 시 Extent 관리 방법 : [[보기]](https://rebel-lord-f41.notion.site/Tablespace-Extent-406e2653e1294b20a98601136b95d280?pvs=4)
 - 5-12. Bigfile Tablespace : [[보기]](https://rebel-lord-f41.notion.site/Bigfile-Tablespace-f168ae90b230477fb3dbbe448da8d2bd?pvs=4)
 
-### 6. Undo Tablespace 관리
+### 6. Undo Tablespace 관리 🌟
 - 6-1. Undo Data 에 대한 이해 : [[보기]](https://rebel-lord-f41.notion.site/Undo-Data-e70a2b1cf4ce4567b4088d6059b7c83c?pvs=4)
 - 6-2. Undo Data / Redo Data : [[보기]](https://rebel-lord-f41.notion.site/Undo-Data-Redo-Data-6977877fac6c4c2c93877c58f1cae025?pvs=4)
 - 6-3. Undo Data 자동 관리 : [[보기]](https://rebel-lord-f41.notion.site/Undo-Data-ecabe79c28504cecb570a94f6e0191c1?pvs=4)
