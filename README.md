@@ -77,7 +77,7 @@
 - 8-8. Role 개념과 사용 : [[보기]](https://rebel-lord-f41.notion.site/Role-20b7322280be4a32885d64610872dbdf?pvs=4)
 
 ### 9. Resource Manager
-- Resource Manager 개념과 구현 : [[보기]](https://rebel-lord-f41.notion.site/Resource-Manager-7a2cbce70acb40b49707d0b68c762bce?pvs=4)
-- CPU 사용 제한 : [[보기]](https://rebel-lord-f41.notion.site/CPU-f8e3a1d7ef184f7c8c5a8c6b9c9dbb99?pvs=4)
-- 병렬도 제한 : [[보기]](https://rebel-lord-f41.notion.site/15f0867258e64bb3be273e2ccc8af3a2?pvs=4)
-- 악성 SQL 수행 제한 : [[보기]](https://rebel-lord-f41.notion.site/SQL-4e3cedc1cd4943ffa3fab7841f4e48af?pvs=4)
+- 9-1. Resource Manager 개념과 구현 : [[보기]](https://rebel-lord-f41.notion.site/Resource-Manager-7a2cbce70acb40b49707d0b68c762bce?pvs=4)
+- 9-2. CPU 사용 제한 : [[보기]](https://rebel-lord-f41.notion.site/CPU-f8e3a1d7ef184f7c8c5a8c6b9c9dbb99?pvs=4)
+- 9-3. 병렬도 제한 : [[보기]](https://rebel-lord-f41.notion.site/15f0867258e64bb3be273e2ccc8af3a2?pvs=4)
+- 9-4. 악성 SQL 수행 제한 : [[보기]](https://rebel-lord-f41.notion.site/SQL-4e3cedc1cd4943ffa3fab7841f4e48af?pvs=4)
