@@ -96,3 +96,9 @@
 - 10-11. Data Pump : Tablespace Level : [[보기]](https://rebel-lord-f41.notion.site/Data-Pump-Tablespace-Level-2c173749b21943ad9896a06266774592?pvs=4)
 - 10-12. 고수들의 Data Migration 방법 : [[보기]](https://rebel-lord-f41.notion.site/Data-Migration-79f68e7085514bb48ba05d13d5cddfe1?pvs=4)
 - 10-13. External Table 생성 : SQL*Loader & Pump : [[보기]](https://rebel-lord-f41.notion.site/External-Table-SQL-Loader-Pump-5081e88f76434c64b330274efe4413bd?pvs=4)
+
+### 11. 공간 관리 🌟
+- 11-1. DB reorg : [[보기]](https://rebel-lord-f41.notion.site/DB-reorg-c2de10bb60444737bc69c1c0275b0c28?pvs=4)
+- 11-2. 테이블 압축 : [[보기]](https://rebel-lord-f41.notion.site/d5f43f7cb0b94b9294cadffb7c40a08c?pvs=4)
+- 11-3. Deferred Segment : [[보기]](https://rebel-lord-f41.notion.site/Deferred-Segment-520ba1360b2548258ce1a63283c288fd?pvs=4)
+- 11-4. ASM(Automatic Storage Managment) : [[보기]](https://rebel-lord-f41.notion.site/ASM-Automatic-Storage-Managment-ebc3ee5de58743cbbc3a186f7d83c9f5?pvs=4)
