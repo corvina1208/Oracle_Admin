@@ -81,3 +81,18 @@
 - 9-2. CPU 사용 제한 : [[보기]](https://rebel-lord-f41.notion.site/CPU-f8e3a1d7ef184f7c8c5a8c6b9c9dbb99?pvs=4)
 - 9-3. 병렬도 제한 : [[보기]](https://rebel-lord-f41.notion.site/15f0867258e64bb3be273e2ccc8af3a2?pvs=4)
 - 9-4. 악성 SQL 수행 제한 : [[보기]](https://rebel-lord-f41.notion.site/SQL-4e3cedc1cd4943ffa3fab7841f4e48af?pvs=4)
+
+### 10. Data Migration 🌟
+- 10-1. Data Migration 3가지 방법 : [[보기]](https://rebel-lord-f41.notion.site/Data-Migration-3-c0a47b3613594e7cb74e1724c0b01d97?pvs=4)
+- 10-2. Direct Load Insert : [[보기]](https://rebel-lord-f41.notion.site/Direct-Load-Insert-88c81976aa934bb4a87ae6d720e33f51?pvs=4)
+- 10-3. Direct Path Insert : [[보기]](https://rebel-lord-f41.notion.site/Direct-Path-Insert-SQL-Loader-csv-15c4be38d6bb4b5cba8b622fd7101d87?pvs=4)
+- 10-4. 테이블 생성 스크립트 추출 : [[보기]](https://rebel-lord-f41.notion.site/2c346500a8f348e4afcc54436446c9ae?pvs=4)
+- 10-5. Export / Import : Table Level : [[보기]](https://rebel-lord-f41.notion.site/Export-Import-Table-Level-6eae4deec4aa4207bda101baf8977389?pvs=4)
+- 10-6. Export / Import : User Level : [[보기]](https://rebel-lord-f41.notion.site/Export-Import-User-Level-2a8bdc8f2df140448cceee4e2a703c14?pvs=4)
+- 10-7. Export / Import : Tablespace Level : [[보기]](https://rebel-lord-f41.notion.site/Export-Import-Tablespace-Level-87835201ba694afca4713ca216f99872?pvs=4)
+- 10-8. Export / Import : Database Level : [[보기]](https://rebel-lord-f41.notion.site/Export-Import-Database-Level-6122ad921a7241e48266cfa7fa6a5294?pvs=4)
+- 10-9. Data Pump : Table Level : [[보기]](https://rebel-lord-f41.notion.site/Data-Pump-Table-Level-1e9737d7d5a74e9883cb822f7d3123f0?pvs=4)
+- 10-10. Data Pump : User Level : [[보기]](https://rebel-lord-f41.notion.site/Data-Pump-User-Level-1cf5ab9e032f4b069b6a390cc76764b6?pvs=4)
+- 10-11. Data Pump : Tablespace Level : [[보기]](https://rebel-lord-f41.notion.site/Data-Pump-Tablespace-Level-2c173749b21943ad9896a06266774592?pvs=4)
+- 10-12. 고수들의 Data Migration 방법 : [[보기]](https://rebel-lord-f41.notion.site/Data-Migration-79f68e7085514bb48ba05d13d5cddfe1?pvs=4)
+- 10-13. External Table 생성 : SQL*Loader & Pump : [[보기]](https://rebel-lord-f41.notion.site/External-Table-SQL-Loader-Pump-5081e88f76434c64b330274efe4413bd?pvs=4)
